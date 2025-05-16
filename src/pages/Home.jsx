@@ -12,7 +12,7 @@ export default function Home() {
 
 	return (
 		<div style={{ padding: 30 }}>
-			<h1>Bienvenido</h1>
+			<h1>Bienvenido patatoncio</h1>
 			<Button variant="contained" color="secondary" onClick={handleLogout}>
 				Cerrar sesión
 			</Button>
