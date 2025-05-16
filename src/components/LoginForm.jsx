@@ -10,31 +10,57 @@ export default function LoginForm({ setUser }) {
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
-	e.preventDefault();
-	const { user, error } = await login(email, password);
-	if (user) {
-		setUser(user);
-		navigate("/home");
-	} else {
-		setError(error);
-	}
+		e.preventDefault();
+		const { user, error } = await login(email, password);
+		if (user) {
+			setUser(user);
+			navigate("/home");
+		} else {
+			setError(error);
+		}
 	};
 
 	return (
-	<Box component="form" onSubmit={handleSubmit} sx={{ width: 300, margin: "auto", mt: 10 }}>
-		<Typography variant="h5" gutterBottom>Iniciar Sesión</Typography>
-			{error && <Alert severity="error">{error}</Alert>}
-		<TextField
-			fullWidth margin="normal" label="Correo electrónico"
-			value={email} onChange={(e) => setEmail(e.target.value)}
-		/>
-		<TextField
-			fullWidth margin="normal" label="Contraseña" type="password"
-			value={password} onChange={(e) => setPassword(e.target.value)}
-		/>
-		<Button variant="contained" fullWidth type="submit" sx={{ mt: 2 }}>
-			Entrar
-		</Button>
-	</Box>
+		<Box
+			component="form"
+			onSubmit={handleSubmit}
+			sx={{
+				width: 300,
+				margin: "auto",
+				mt: 10,
+				p: 3,
+				border: "1px solid #ccc",
+				borderRadius: 2,
+				boxShadow: 3,
+				bgcolor: "background.paper",
+			}}
+		>
+			<Typography variant="h5" gutterBottom>
+				Iniciar Sesión
+			</Typography>
+			{error && (
+				<Alert severity="error" variant="filled" sx={{ mt: 2 }}>
+					{error}
+				</Alert>
+			)}
+			<TextField
+				fullWidth
+				margin="normal"
+				label="Correo electrónico"
+				value={email}
+				onChange={(e) => setEmail(e.target.value)}
+			/>
+			<TextField
+				fullWidth
+				margin="normal"
+				label="Contraseña"
+				type="password"
+				value={password}
+				onChange={(e) => setPassword(e.target.value)}
+			/>
+			<Button variant="contained" fullWidth type="submit" sx={{ mt: 2 }}>
+				Entrar
+			</Button>
+		</Box>
 	);
 }
